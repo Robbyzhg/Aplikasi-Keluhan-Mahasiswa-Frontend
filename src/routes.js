@@ -1,8 +1,11 @@
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-const ManageUser = React.lazy(() => import('./views/manageuser/ManageUser'))
-const ManageComplaint = React.lazy(() => import('./views/managecomplaint/ManageComplaint'))
+const Pengaduan = React.lazy(() => import('./views/pengaduan/Pengaduan'))
+const Laporan = React.lazy(() => import('./views/laporan/Laporan'))
+const DataMahasiswa = React.lazy(() => import('./views/datamahasiswa/DataMahasiswa'))
+const DataStaff = React.lazy(() => import('./views/datastaff/DataStaff'))
+const JenisAduan = React.lazy(() => import('./views/jenisaduan/JenisAduan'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -55,8 +58,11 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/manageuser', name: 'ManageUser', element: ManageUser },
-  { path: '/managecomplaint', name: 'ManageComplaint', element: ManageComplaint },
+  { path: '/pengaduan', name: 'Pengaduan', element: Pengaduan },
+  { path: '/laporan', name: 'Laporan', element: Laporan },
+  { path: '/datamahasiswa', name: 'DataMahasiswa', element: DataMahasiswa },
+  { path: '/datastaff', name: 'DataStaff', element: DataStaff },
+  { path: '/jenisaduan', name: 'JenisAduan', element: JenisAduan },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

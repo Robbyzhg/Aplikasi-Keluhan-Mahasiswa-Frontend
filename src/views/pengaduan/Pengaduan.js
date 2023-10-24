@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React from 'react'
 
-export default function ManageUser() {
+export default function Pengaduan() {
   return (
-    <div>ManageUser</div>
+    <div>Pengaduan</div>
   )
 }
