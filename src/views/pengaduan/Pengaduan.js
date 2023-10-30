@@ -1,15 +1,32 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { CCard, CCardBody, CTable, CBadge, CButton } from '@coreui/react'
+import axios from 'axios'
 
 export default function Pengaduan() {
+  const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/keluhans')
+      .then((response) => {
+        setDatas(response.data.data.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:8000/api/keluhans/${id}`)
+      .then(() => {
+        setDatas((prevData) => prevData.filter((item) => item.id !== id));
+      })
+      .catch((error) => {
+        console.error('Error deleting data:', error);
+      });
+  };
 
   const columns = [
-    {
-      key: 'id',
-      label: '#',
-      _props: { scope: 'col' },
-    },
     {
       key: 'nama_mahasiswa',
       label: 'Nama Mahasiswa',
@@ -26,37 +43,33 @@ export default function Pengaduan() {
       _props: { scope: 'col' },
     },
     {
+      key: 'keterangan',
+      label: 'Keterangan',
+      _props: { scope: 'col' },
+    },
+    {
       key: 'action',
       label: 'Action',
       _props: { scope: 'col' },
     },
   ]
-  const items = [
-    {
-      id: 1,
-      nama_mahasiswa: 'Mark Zuckeberg',
-      jenis_aduan: 'Keuangan',
-      status: <CBadge color="warning">Pending</CBadge>,
-      action: <div><CButton size='sm' color='primary'>Detail</CButton> | <CButton size='sm' color='danger'>Delete</CButton></div>,
-      _cellProps: { id: { scope: 'row' } },
-    },
-    {
-      id: 2,
-      nama_mahasiswa: 'Bill Gates',
-      jenis_aduan: 'Sarana Prasarana',
-      status: <CBadge color="success">Selesai</CBadge>,
-      action: <div><CButton size='sm' color='primary'>Detail</CButton> | <CButton size='sm' color='danger'>Delete</CButton></div>,
-      _cellProps: { id: { scope: 'row' } },
-    },
-    {
-      id: 3,
-      nama_mahasiswa: 'Elon Musk',
-      jenis_aduan: 'Keuangan',
-      status: <CBadge color="danger">Ditolak</CBadge>,
-      action: <div><CButton size='sm' color='primary'>Detail</CButton> | <CButton size='sm' color='danger'>Delete</CButton></div>,
-      _cellProps: { id: { scope: 'row' } },
-    },
-  ]
+
+  const items = datas.map((item) => ({
+    key: item.id,
+    nama_mahasiswa: item.nama_mahasiswa,
+    jenis_aduan: item.jenis_aduan,
+    keterangan: item.keterangan,
+    status: item.status,
+    action: (
+      <CButton
+        size='sm'
+        color="danger"
+        onClick={() => handleDelete(item.id)}
+      >
+        Delete
+      </CButton>
+    ),
+  }));
   
   return (
     <CCard>
