@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
-import { CCard, CCardBody, CTable, CBadge, CButton } from '@coreui/react'
+import { CCard, CCardBody, CTable, CButton } from '@coreui/react'
 import axios from 'axios'
 
 export default function Pengaduan() {

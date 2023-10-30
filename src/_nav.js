@@ -21,6 +21,12 @@ const _nav = [
     icon: <CIcon icon={cilChatBubble} customClassName="nav-icon" />,
   },
   {
+    component: CNavItem,
+    name: 'Pengaduan Mahasiswa',
+    to: '/pengaduanmahasiswa',
+    icon: <CIcon icon={cilChatBubble} customClassName="nav-icon" />,
+  },
+  {
     component: CNavTitle,
     name: 'Laporan',
   },
